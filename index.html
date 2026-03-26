@@ -815,10 +815,22 @@ function renderCartItems(){
 // ──────────────────────────────────────────────
 let currentStep = 1;
 function openCheckout(){
+  if(!cart.length) return;
   closeCart();
-  currentStep = 1;
-  document.getElementById('checkoutOverlay').classList.add('open');
-  showCheckoutStep(1);
+  const btn = document.querySelector('.cart-checkout-btn');
+  const orig = btn ? btn.innerHTML : '';
+  if(btn){ btn.innerHTML = '⏳ Redirecting to Checkout…'; btn.disabled = true; }
+  fetch('/api/checkout', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({items: cart.map(i => ({name: i.name, price: i.price, qty: i.qty, caseOnly: i.caseOnly||false, caseQty: i.caseQty||1, sku: i.sku}))})
+  })
+  .then(r => r.json())
+  .then(data => {
+    if(data.url){ window.location.href = data.url; }
+    else { alert('Checkout error: ' + (data.error || 'Please try again.')); if(btn){ btn.innerHTML=orig; btn.disabled=false; } }
+  })
+  .catch(() => { alert('Network error. Please try again.'); if(btn){ btn.innerHTML=orig; btn.disabled=false; } });
 }
 function closeCheckout(){
   document.getElementById('checkoutOverlay').classList.remove('open');
@@ -918,6 +930,17 @@ function showToast(msg){
 
 // INIT
 renderProducts();
+</script>
+
+<script>
+(function(){
+  if(location.search.includes('order=success')){
+    const b = document.createElement('div');
+    b.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#166534;color:#fff;text-align:center;padding:18px 24px;z-index:99999;font-size:1.05rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:16px;box-shadow:0 2px 12px rgba(0,0,0,.3)';
+    b.innerHTML = '✅ Order placed! Check your email for your confirmation & receipt. <button onclick="this.parentElement.remove();history.replaceState(null,\'\',' + "'/'" + ')" style="background:none;border:1px solid rgba(255,255,255,.6);color:#fff;padding:4px 14px;border-radius:20px;cursor:pointer;font-size:.9rem">Dismiss</button>';
+    document.body.prepend(b);
+  }
+})();
 </script>
 </body>
 </html>
