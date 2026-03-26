@@ -307,17 +307,7 @@ footer{background:var(--dark);padding:48px 2% 24px;margin-top:64px}
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-title">Categories</div>
-      <div class="filter-group">
-        <div class="filter-item"><input type="checkbox" id="f-bay" onchange="applyFilters()"><label for="f-bay">Shop/Bay Lights</label><span class="count">8</span></div>
-        <div class="filter-item"><input type="checkbox" id="f-parking" onchange="applyFilters()"><label for="f-parking">Parking & Exterior</label><span class="count">5</span></div>
-        <div class="filter-item"><input type="checkbox" id="f-canopy" onchange="applyFilters()"><label for="f-canopy">Canopy Lights</label><span class="count">4</span></div>
-        <div class="filter-item"><input type="checkbox" id="f-office" onchange="applyFilters()"><label for="f-office">Office & Interior</label><span class="count">6</span></div>
-        <div class="filter-item"><input type="checkbox" id="f-accessories" onchange="applyFilters()"><label for="f-accessories">Accessories</label><span class="count">3</span></div>
-        <div class="filter-item"><input type="checkbox" id="f-linear" onchange="applyFilters()"><label for="f-linear">Linear Lights</label><span class="count">12</span></div>
-      </div>
-    </div>
-    <div class="sidebar-section">
+      <div class="sidebar-section">
       <div class="sidebar-title">Nominal Length</div>
       <div class="filter-group">
         <div class="filter-item"><input type="checkbox" id="nl1" onchange="applyFilters()"><label for="nl1">2 ft</label><span class="count">4</span></div>
@@ -326,12 +316,12 @@ footer{background:var(--dark);padding:48px 2% 24px;margin-top:64px}
       </div>
     </div>
     <div class="sidebar-section">
+      <div class="sidebar-section">
       <div class="sidebar-title">Wattage</div>
       <div class="filter-group">
-        <div class="filter-item"><input type="checkbox" id="w1" onchange="applyFilters()"><label for="w1">Under 50W</label></div>
-        <div class="filter-item"><input type="checkbox" id="w2" onchange="applyFilters()"><label for="w2">50W – 100W</label></div>
-        <div class="filter-item"><input type="checkbox" id="w3" onchange="applyFilters()"><label for="w3">100W – 200W</label></div>
-        <div class="filter-item"><input type="checkbox" id="w4" onchange="applyFilters()"><label for="w4">200W+</label></div>
+        <div class="filter-item"><input type="checkbox" id="w1" onchange="applyFilters()"><label for="w1">Under 10W</label></div>
+        <div class="filter-item"><input type="checkbox" id="w2" onchange="applyFilters()"><label for="w2">10W – 12W</label></div>
+        <div class="filter-item"><input type="checkbox" id="w3" onchange="applyFilters()"><label for="w3">13W+</label></div>
       </div>
     </div>
     <div class="sidebar-section">
@@ -633,10 +623,9 @@ function getFilteredProducts(){
   if(nlFilters.length) items = items.filter(p => p.nominalLength && nlFilters.includes(p.nominalLength));
   // Wattage
   const wFilters = [];
-  if(document.getElementById('w1')?.checked) wFilters.push(w=>w<50);
-  if(document.getElementById('w2')?.checked) wFilters.push(w=>w>=50&&w<=100);
-  if(document.getElementById('w3')?.checked) wFilters.push(w=>w>100&&w<=200);
-  if(document.getElementById('w4')?.checked) wFilters.push(w=>w>200);
+  if(document.getElementById('w1')?.checked) wFilters.push(w=>w<10);
+  if(document.getElementById('w2')?.checked) wFilters.push(w=>w>=10&&w<=12);
+  if(document.getElementById('w3')?.checked) wFilters.push(w=>w>12);
   if(wFilters.length) items = items.filter(p => p.watts && wFilters.some(f=>f(p.watts)));
   // Color Temperature
   const ctFilters = [];
