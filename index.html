@@ -307,7 +307,17 @@ footer{background:var(--dark);padding:48px 2% 24px;margin-top:64px}
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section">
+      
+    <div class="sidebar-section">
+      <div class="sidebar-title">UL Type</div>
+      <div class="filter-group">
+        <div class="filter-item"><input type="checkbox" id="ut1" onchange="applyFilters()"><label for="ut1">Type A – Plug &amp; Play</label></div>
+        <div class="filter-item"><input type="checkbox" id="ut2" onchange="applyFilters()"><label for="ut2">Type B – Ballast Bypass</label></div>
+        <div class="filter-item"><input type="checkbox" id="ut3" onchange="applyFilters()"><label for="ut3">Type A/B – Hybrid</label></div>
+        <div class="filter-item"><input type="checkbox" id="ut4" onchange="applyFilters()"><label for="ut4">Type C – External Driver</label></div>
+      </div>
+    </div>
+    <div class="sidebar-section">
       <div class="sidebar-title">Nominal Length</div>
       <div class="filter-group">
         <div class="filter-item"><input type="checkbox" id="nl1" onchange="applyFilters()"><label for="nl1">2 ft</label><span class="count">4</span></div>
@@ -353,15 +363,6 @@ footer{background:var(--dark);padding:48px 2% 24px;margin-top:64px}
       <div class="filter-group">
         <div class="filter-item"><input type="checkbox" id="rt1" onchange="applyFilters()"><label for="rt1">⭐⭐⭐⭐⭐ 5 Stars</label></div>
         <div class="filter-item"><input type="checkbox" id="rt2" onchange="applyFilters()"><label for="rt2">⭐⭐⭐⭐ 4+ Stars</label></div>
-      </div>
-    </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">UL Type</div>
-      <div class="filter-group">
-        <div class="filter-item"><input type="checkbox" id="ut1" onchange="applyFilters()"><label for="ut1">Type A – Plug &amp; Play</label></div>
-        <div class="filter-item"><input type="checkbox" id="ut2" onchange="applyFilters()"><label for="ut2">Type B – Ballast Bypass</label></div>
-        <div class="filter-item"><input type="checkbox" id="ut3" onchange="applyFilters()"><label for="ut3">Type A/B – Hybrid</label></div>
-        <div class="filter-item"><input type="checkbox" id="ut4" onchange="applyFilters()"><label for="ut4">Type C – External Driver</label></div>
       </div>
     </div>
     <button class="clear-filters" onclick="clearFilters()">✕ Clear All Filters</button>
